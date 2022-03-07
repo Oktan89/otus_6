@@ -1,5 +1,8 @@
 #pragma once
 #include <vector>
+#include <ostream>
+#include <map>
+
 
 class SparseMatrix
 {
@@ -7,31 +10,56 @@ private:
 
     class MatrixRow
     {
-        std::vector<int> col;
+        std::vector<int> _index;
+        std::map<std::vector<int>, int> column;
     public:
-        MatrixRow() : col(10)
-        {
-             for(int i = 0; i < 10; ++i)
-                col[i] = i * 2;   
+        MatrixRow() {}
+
+        MatrixRow& operator[](int col)
+        {   
+            set(col);
+            return *this;
         }
-        int& operator[](int row)
+        void set(int index)
         {
-            return col[row];
+            _index.push_back(index);
         }
+
+        MatrixRow& operator=(int value)
+        {
+            column[_index] = value;
+            return *this;
+        }
+
+        void reset()
+        {
+            _index.clear();
+        }
+
+        friend std::ostream& operator<<(std::ostream& out, const MatrixRow& matrix)
+        {   auto d = matrix.column.find(matrix._index);
+            if(d != matrix.column.end())
+                out << d->second << std::endl;
+            else
+                out << 0 << std::endl;
+            return out;
+        }
+
     };
 
 public:
-    SparseMatrix() : row(10)
-    {
-
-    }
+    SparseMatrix(){}
+  
     MatrixRow& operator[](int _row)
     {
-          return row[_row];
+        test.reset();
+        test.set(_row);
+        return test;
     }
 
 private:
-std::vector<MatrixRow> row;
-    
+MatrixRow test;
+
 };
+
 
