@@ -1,8 +1,18 @@
+/**
+ * @file sparse_matrix.h
+ * @author your name (you@domain.com)
+ * @brief 
+ * @version 0.1
+ * @date 2022-03-10
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #pragma once
 #include <vector>
 #include <ostream>
 #include <map>
-#include <iterator>
+
 
 
 

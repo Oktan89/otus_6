@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include "sparse_matrix.h"
-#include <string>
+
 
 
 TEST(testVersionGoogle, ValidVersion) {
