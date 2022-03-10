@@ -19,6 +19,7 @@ namespace otus
         private:
             std::vector<std::size_t> _index;
             maptrix_type matrix;
+            
             friend SparseMatrix;
         public:
            
@@ -54,7 +55,7 @@ namespace otus
                 return *this;
             }
 
-            void reset()
+            void resetIndex()
             {
                 _index.clear();
             }
@@ -84,7 +85,7 @@ namespace otus
 
         MatrixProxy &operator[](std::size_t index)
         {
-            proxy.reset();
+            proxy.resetIndex();
             proxy.set(index);
             return proxy;
         }
@@ -102,6 +103,11 @@ namespace otus
         auto end()
         {
             return proxy.matrix.end();
+        }
+
+        void clear()
+        {
+            proxy.matrix.clear();
         }
 
     private:
